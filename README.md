@@ -1,6 +1,4 @@
-# Roblox Account Manager Supporter
-
-![Roblox Logo](roblox_logo.png)
+![image](https://github.com/Kiet1308/Roblox-Account-Manager-Supporter/assets/50774381/2d992948-15d5-4117-b0f3-efd830249bb0)# Roblox Account Manager Supporter
 
 The **Roblox Account Manager Supporter** is a powerful software designed to enhance and optimize the functionality of the Roblox Account Manager. This software is specifically created to address and resolve various errors that may occur within the Account Manager. The best part? You won't need Nexus for this software to function; simply activate it alongside your Account Manager and continue using the Account Manager as you normally would.
 
@@ -16,21 +14,19 @@ The **Roblox Account Manager Supporter** is a powerful software designed to enha
 
 To get started with the Roblox Account Manager Supporter, follow these simple steps:
 
-1. **Download:** Obtain the latest version of the Roblox Account Manager Supporter from the official website or trusted sources.
+1. **Download:** Obtain the latest version of the Roblox Account Manager Supporter from the official website or trusted sources
 
-2. **Install:** Run the installer and follow the on-screen instructions to install the software on your system.
+2. **Install:** Put all its files in the Account Manager folder
 
-3. **Activate:** Launch the Account Manager Supporter and activate it by toggling it on. Ensure that your Roblox Account Manager is also running.
+3. **Activate:** Launch the Account Manager Supporter. Ensure that your Roblox Account Manager is also running.
 
-4. **Usage:** With both the Account Manager Supporter and the Roblox Account Manager active, continue using the Account Manager as usual. The Supporter software will automatically detect and resolve errors in the background.
+4. **Config:** Set Account Manager Config like this 
+![image](https://github.com/Kiet1308/Roblox-Account-Manager-Supporter/assets/50774381/0a2addab-cccd-4989-9ce8-30ddda4b9d01)
+
+5. **Usage:** With both the Account Manager Supporter and the Roblox Account Manager active, continue using the Account Manager as usual. The Supporter software will automatically detect and resolve errors in the background.
 
 ## System Requirements
-
-- Operating System: Windows 7 or later, macOS 10.12 or later, Linux (64-bit)
 - Roblox Account Manager installed and running
-- Minimum 4GB RAM, 10GB of free storage space
-- Internet connection for updates and error database
-
 ## Frequently Asked Questions
 
 **Q: Is the Roblox Account Manager Supporter safe to use?**

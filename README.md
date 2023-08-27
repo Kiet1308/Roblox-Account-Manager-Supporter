@@ -40,7 +40,7 @@ A: Yes, you can use the Supporter software on multiple accounts, as long as each
 
 ## Support
 
-If you encounter any issues or have questions about the Roblox Account Manager Supporter, please reach out to our support team at support@robloxaccountsupporter.com.
+If you encounter any issues or have questions about the Roblox Account Manager Supporter, please reach out to our support team at https://discord.gg/dXEZagMVgF.
 
 ## Disclaimer
 

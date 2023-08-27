@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TvkUwpBSS
+namespace AccountManagerSupporter
 {
 
     internal class Program
@@ -189,8 +189,8 @@ namespace TvkUwpBSS
                 Console.ReadLine();
                 return;
             }
-            Console.WriteLine("Rolox Account Manager Supporter - made by tvk1308");
-            Console.Title = "Rolox Account Manager Supporter - tvk1308";
+            Console.WriteLine("Roblox Account Manager Supporter - made by tvk1308");
+            Console.Title = "Roblox Account Manager Supporter - tvk1308";
             WaitForProcess();
             string[] folders = Directory.GetDirectories(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+@"\Packages", "*", SearchOption.TopDirectoryOnly);
             Dictionary<string, long> AccTimer = new Dictionary<string, long>();

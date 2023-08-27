@@ -177,6 +177,7 @@ namespace AccountManagerSupporter
         }
         static void Main(string[] args)
         {
+            string Varriable = "";
             AccountManger = Environment.CurrentDirectory;
             Console.Title = "Roblox Account Manager Supporter - tvk1308 " + VERSION;
 

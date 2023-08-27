@@ -27,7 +27,7 @@ To get started with the Roblox Account Manager Supporter, follow these simple st
 5. **Usage:** With both the Account Manager Supporter and the Roblox Account Manager active, continue using the Account Manager as usual. The Supporter software will automatically detect and resolve errors in the background.
 
 ## System Requirements
-- Roblox Account Manager installed and running
+- Roblox Account Manager ver 3.7+ installed and running
 ## Frequently Asked Questions
 
 **Q: Is the Roblox Account Manager Supporter safe to use?**

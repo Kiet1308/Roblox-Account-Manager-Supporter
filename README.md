@@ -1,4 +1,3 @@
-![image](https://github.com/Kiet1308/Roblox-Account-Manager-Supporter/assets/50774381/2d992948-15d5-4117-b0f3-efd830249bb0)# Roblox Account Manager Supporter
 
 The **Roblox Account Manager Supporter** is a powerful software designed to enhance and optimize the functionality of the Roblox Account Manager. This software is specifically created to address and resolve various errors that may occur within the Account Manager. The best part? You won't need Nexus for this software to function; simply activate it alongside your Account Manager and continue using the Account Manager as you normally would.
 

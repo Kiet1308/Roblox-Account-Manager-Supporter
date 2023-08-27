@@ -21,6 +21,7 @@ namespace AccountManagerSupporter
 
     internal class Program
     {
+        const string VERSION = "v1.0";
         static string AccountManger = "";
         static void WaitForProcess()
         {
@@ -44,7 +45,6 @@ namespace AccountManagerSupporter
 
             return stringBuilder.ToString();
         }
-        static string FluxusPath = "";
         static string GetRobloxAccByProcess(Process process)
         {
             try
@@ -57,43 +57,67 @@ namespace AccountManagerSupporter
                 return "";
             }
         }
+
+        private static object processLock = new object(); // Define a lock object
+
         static void OnProcessStarted(object sender, EventArrivedEventArgs e)
         {
-            try
+            lock (processLock)
             {
-                if (e.NewEvent.Properties["ProcessName"].Value.ToString() == "Windows10Universal.exe")
+                try
                 {
-                    Thread.Sleep(5000);
-                    string id = e.NewEvent.Properties["ProcessId"].Value.ToString();
-                    Process process = Process.GetProcessById(int.Parse(id));
-                    string AccountName = GetRobloxAccByProcess(process);
-                    if (!FailJoin.ContainsKey(AccountName))
+                    if (e.NewEvent.Properties["ProcessName"].Value.ToString() == "Windows10Universal.exe")
                     {
-                        FailJoin.Add(AccountName, 0);
+                        Thread.Sleep(2000);
+                        
+                        string id = e.NewEvent.Properties["ProcessId"].Value.ToString();
+
+                        Process process = Process.GetProcessById(int.Parse(id));
+
+                        string FluxusPath = GetFluxusPath(process);
+                        Thread thread = new Thread(() => {
+                            Thread.Sleep(5000);
+                            string AccountName = GetRobloxAccByProcess(process);
+                            if (!FailJoin.ContainsKey(AccountName))
+                            {
+                                FailJoin.Add(AccountName, 0);
+                            }
+                            else
+                            {
+                                FailJoin[AccountName] = 0;
+                            }
+                            Thread.Sleep(1000);
+
+                            if (!string.IsNullOrEmpty(FluxusPath))
+                            {
+                                DllInject.Inject(process, FluxusPath);
+                            }
+                            Thread.Sleep(2000);
+                        });
+                        thread.IsBackground = true;
+                        thread.Start();
                     }
-                    else
-                    {
-                        FailJoin[AccountName] = 0;
-                    }
-                    Thread.Sleep(1000);
-                    DllInject.Inject(process, FluxusPath);
-                    Thread.Sleep(2000);
+                }
+                catch (Exception)
+                {
+
                 }
             }
-            catch (Exception)
-            {
-
-            }
         }
-    
+
+
         static long GetTime()
         {
             return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         }
         const string RAMPORT = "1412";
         const string RAMPASS = "sucvatruabithieunang";
+
         public static HttpClient HttpClient = new HttpClient();
         static Dictionary<string, int> FailJoin = new Dictionary<string, int>();
+        static string HttpGet(string url) {
+            return (HttpClient.GetAsync(url).Result.Content.ReadAsStringAsync().Result);
+        }
         static string JoinGame(string accname, string placeid, string jobid)
         {
             string url = "http://localhost:" + RAMPORT + "/LaunchAccount?Password=" + RAMPASS + "&Account=" + accname + "&PlaceId=" + placeid;
@@ -103,43 +127,70 @@ namespace AccountManagerSupporter
             }
             return (HttpClient.GetAsync(url).Result.Content.ReadAsStringAsync().Result);
         }
-        static string GetFluxusPath()
+        static Dictionary<string,string> CachedHash = new Dictionary<string,string>();
+        static string GetFluxusPath(Process process)
         {
-            string[] folders = Directory.GetDirectories(@"C:\Program Files (x86)", "*", SearchOption.TopDirectoryOnly);
-            foreach (var item in folders)
+            string FluxusDlls = "C:\\Program Files (x86)";
+
+            string file;
+            if (CachedHash.ContainsKey(process.MainModule.FileName))
             {
-                FileInfo fileInfo = new FileInfo(item);
-                if (fileInfo.Name.Length == 64)
+                file = CachedHash[process.MainModule.FileName];
+            }
+            else
+            {
+                file = CalculateSHA384(process.MainModule.FileName);
+                CachedHash.Add(process.MainModule.FileName, file);
+            }
+            if (File.Exists(Path.Combine(FluxusDlls,file+".dll")))
+            {
+                return Path.Combine(FluxusDlls, file + ".dll");
+            }
+            string Url = "https://flux.li/windows/external/get_dll_hash.php?hash="+ file;
+            string DownloadUrl = HttpGet(Url);
+            if (!string.IsNullOrEmpty(DownloadUrl))
+            {
+                using (WebClient client = new WebClient())
                 {
-                    if (File.Exists(item + "\\" + fileInfo.Name + ".dll"))
-                    {
-                        return item + "\\" + fileInfo.Name + ".dll";
-                    }
+                    client.DownloadFile(DownloadUrl, file+".dll");
+                    Thread.Sleep(100);
+                    var fs = File.GetAccessControl(file + ".dll");
+                    fs.SetAccessRuleProtection(false, false);
+                    File.Move(file + ".dll", Path.Combine(FluxusDlls, file + ".dll"));
+                    File.SetAccessControl(Path.Combine(FluxusDlls, file + ".dll"), fs);
+                    Thread.Sleep(100);
+                    return Path.Combine(FluxusDlls, file + ".dll");
                 }
             }
             return "";
         }
+        static string CalculateSHA384(string filePath)
+        {
+            using (var sha384 = SHA384.Create())
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] hashBytes = sha384.ComputeHash(fileStream);
+                    return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                }
+            }
+        }
         static void Main(string[] args)
         {
             AccountManger = Environment.CurrentDirectory;
+            Console.Title = "Roblox Account Manager Supporter - tvk1308 " + VERSION;
+
             if (!File.Exists(Path.Combine(AccountManger, "RAMSettings.ini")))
             {
-                Console.WriteLine("K ph la folder account manager huhu");
+                Console.WriteLine("Please put this program in account manager folder");
                 Console.ReadKey();
                 return;
             }
             Dictionary<string, string> Settings = new Dictionary<string, string>() {
-                ["WebServerPort"] = RAMPORT,
-                ["Password"] = RAMPASS,
-                ["AllowLaunchAccount"] = "true",
-                ["EveryRequestRequiresPassword"] = "true",
-                ["AllowExternalConnections"] = "true",
                 ["RelaunchDelay"] = "3600",
                 ["LauncherDelayNumber"] = "3600",
                 ["UsePresence"] = "true",
                 ["LauncherDelay"] = "3600",
-                ["EnableWebServer"] = "true",
-                ["DevMode"] = "true"
             };
             string INI = File.ReadAllText(Path.Combine(AccountManger, "RAMSettings.ini"));
             string OutputIni = "";
@@ -152,7 +203,7 @@ namespace AccountManagerSupporter
                     string[] splited = text.Split('=');
                     if (splited.Length == 2)
                     {
-                        Console.WriteLine(splited[0] + ","+ splited[1]);
+                        splited[1] = splited[1].Replace(((char)(13)).ToString(),"");
                         if (Settings.ContainsKey(splited[0]) && Settings[splited[0]] != splited[1])
                         {
                             outputtext = splited[0] + "=" + Settings[splited[0]];
@@ -181,16 +232,7 @@ namespace AccountManagerSupporter
             {
                 Process.Start(Path.Combine(AccountManger, "Roblox Account Manager.exe"));
             }
-            
-            FluxusPath = GetFluxusPath();
-            if (string.IsNullOrEmpty(FluxusPath))
-            {
-                Console.WriteLine("Fluxus path not found");
-                Console.ReadLine();
-                return;
-            }
             Console.WriteLine("Roblox Account Manager Supporter - made by tvk1308");
-            Console.Title = "Roblox Account Manager Supporter - tvk1308";
             WaitForProcess();
             string[] folders = Directory.GetDirectories(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+@"\Packages", "*", SearchOption.TopDirectoryOnly);
             Dictionary<string, long> AccTimer = new Dictionary<string, long>();

@@ -19,7 +19,8 @@ To get started with the Roblox Account Manager Supporter, follow these simple st
 
 3. **Activate:** Launch the Account Manager Supporter. Ensure that your Roblox Account Manager is also running.
 
-4. **Config:** Set Account Manager Config like this 
+4. **Config:** Set Account Manager Config like this
+
 ![image](https://github.com/Kiet1308/Roblox-Account-Manager-Supporter/assets/50774381/0a2addab-cccd-4989-9ce8-30ddda4b9d01)
 
 5. **Usage:** With both the Account Manager Supporter and the Roblox Account Manager active, continue using the Account Manager as usual. The Supporter software will automatically detect and resolve errors in the background.

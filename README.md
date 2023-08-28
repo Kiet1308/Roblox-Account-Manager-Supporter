@@ -6,6 +6,8 @@ The **Roblox Account Manager Supporter** is a powerful software designed to enha
 
 - **Error Resolution:** The Roblox Account Manager Supporter is built to identify and fix a wide range of errors that might arise while using the Roblox Account Manager. Say goodbye to frustrating interruptions and glitches!
 
+- **Auto Inject Fluxus:** Seamlessly inject Fluxus into multiple installed versions of Roblox. Enjoy enhanced customization and capabilities with this convenient feature.
+
 - **Nexus-Free:** Unlike some other solutions, this software doesn't require Nexus to operate. This means you can enjoy uninterrupted usage of the Account Manager without any additional dependencies.
 
 - **Seamless Integration:** Integrating the Roblox Account Manager Supporter into your workflow is a breeze. Just enable the software alongside your Account Manager, and it will work silently in the background, ensuring smooth operations.

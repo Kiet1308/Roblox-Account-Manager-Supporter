@@ -21,7 +21,7 @@ namespace AccountManagerSupporter
 
     internal class Program
     {
-        const string VERSION = "v1.0";
+        const string VERSION = "v1.1";
         static string AccountManger = "";
         static void WaitForProcess()
         {

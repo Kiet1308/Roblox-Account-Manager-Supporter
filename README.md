@@ -10,7 +10,11 @@ The **Roblox Account Manager Supporter** is a powerful software designed to enha
 
 - **Nexus-Free:** Unlike some other solutions, this software doesn't require Nexus to operate. This means you can enjoy uninterrupted usage of the Account Manager without any additional dependencies.
 
-- **Seamless Integration:** Integrating the Roblox Account Manager Supporter into your workflow is a breeze. Just enable the software alongside your Account Manager, and it will work silently in the background, ensuring smooth operations.
+- **Seamless Integration:** Integrating the Roblox Account Manager Supporter into your workflow is a breeze. Just enable the software alongside your Account Manager, and it will work silently in the background, ensuring smooth operation
+
+- **Update All Cloned Roblox Instances To Original Version:** Set all Roblox instances to the original version
+ 
+- **Auto Delete Roblox Instance Cache:** Will Auto Delete Cache that create by Roblox
 
 ## Getting Started
 

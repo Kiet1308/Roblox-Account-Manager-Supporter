@@ -300,7 +300,7 @@ namespace AccountManagerSupporter
             Console.WriteLine("Recommended Settings for Minimizing Roblox Crashes:");
             Console.WriteLine("  - AutoInject     : true");
             Console.WriteLine("  - InjectMainTab  : true");
-            Console.WriteLine("  - Use custom Join function: AccountManagerSupporter.JoinServer(UserName, PlaceId, JobId)");
+            //Console.WriteLine("  - Use custom Join function: AccountManagerSupporter.JoinServer(UserName, PlaceId, JobId)");
             Console.WriteLine("  - Use newest Roblox Version");
             Console.WriteLine("  - Disable auto inject in Fluxus.\n");
 
